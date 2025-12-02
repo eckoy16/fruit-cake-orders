@@ -1,124 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruit Cake Orders</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<section id="order" class="section">
+    <h2>Order Form</h2>
+    <p>Submit your order and we will contact you for confirmation.</p>
 
-<body>
-    <header>
-        <div class="logo-area">
-            <h1>Fruit Cake Orders</h1>
-            <p class="tagline">Freshly baked. Premium ingredients. Made to order.</p>
-        </div>
+    <form id="orderForm">
+        <label>Name:</label>
+        <input type="text" name="customer_name" required>
 
-        <nav>
-            <a href="#about">About</a>
-            <a href="#menu">Cakes</a>
-            <a href="#order">Order Now</a>
-            <a href="#payment">Payment</a>
-        </nav>
-    </header>
+        <label>Email:</label>
+        <input type="email" name="customer_email" required>
 
-    <section id="hero">
-        <h2>Premium Homemade Fruit Cakes</h2>
-        <p>Perfect for holidays, celebrations, gifts, and everyday indulgence.</p>
-        <a href="#order" class="cta-btn">Place an Order</a>
-    </section>
+        <label>Contact Number:</label>
+        <input type="text" name="customer_contact" required>
 
-    <section id="about" class="section">
-        <h2>About Our Fruit Cakes</h2>
-        <p>
-            Our fruit cakes are handcrafted with high-quality ingredients: real dried fruits,
-            nuts, aged rum or brandy (optional), and freshly mixed batter baked to perfection.
-            Every loaf is made to order to ensure maximum freshness and flavor.
-        </p>
-    </section>
+        <label>Select Cake:</label>
+        <select name="cake_type">
+            <option>Single Order - ₱550</option>
+            <option>Double Order - ₱450</option>
+            <option>5 Orders - ₱360</option>
+        </select>
 
-    <section id="menu" class="section">
-        <h2>Our Cakes</h2>
+        <label>Quantity:</label>
+        <input type="number" name="quantity" min="1" value="1" required>
 
-        <div class="cake-grid">
-            <div class="cake-card">
-                <h3>Single Order</h3>
-                <span class="price">₱550 / loaf</span>
-            </div>
+        <label>Mode of Payment:</label>
+        <select name="payment_method" required>
+            <option value="GCash">GCash</option>
+            <option value="Maya">Maya</option>
+            <option value="BDO">BDO</option>
+        </select>
 
-            <div class="cake-card">
-                <h3>Double Your Order</h3>
-                <span class="price">₱450 / loaf</span>
-            </div>
+        <label>Notes (Optional):</label>
+        <textarea name="notes" placeholder="Pickup date, customization, etc."></textarea>
 
-            <div class="cake-card">
-                <h3>5 Orders</h3>
-                <span class="price">₱360 / loaf</span>
-            </div>
-        </div>
-    </section>
+        <!-- Hidden field for the tracking number -->
+        <input type="hidden" name="tracking_number" id="tracking_number">
 
-    <section id="order" class="section">
-        <h2>Order Form</h2>
-        <p>Submit your order and we will contact you for confirmation.</p>
-
-        <form id="orderForm" action="murphysantiagocc@gmail.com" method="post" enctype="text/plain">
-            <label>Name:</label>
-            <input type="text" name="Name" required>
-
-            <label>Email:</label>
-            <input type="email" name="Email" required>
-
-            <label>Contact Number:</label>
-            <input type="text" name="Contact" required>
-
-            <label>Select Cake:</label>
-            <select name="Cake">
-                <option>Single Order - ₱550</option>
-                <option>Double Order - ₱450</option>
-                <option>5 Orders - ₱360</option>
-            </select>
-
-            <label>Quantity:</label>
-            <input type="number" name="Quantity" min="1" value="1" required>
-
-            <label>Notes (Optional):</label>
-            <textarea name="Notes" placeholder="Pickup date, customization, etc."></textarea>
-
-            <button type="submit" class="cta-btn">Submit Order</button>
-        </form>
-    </section>
-
-    <!-- PAYMENT SECTION ADDED HERE -->
-    <section id="payment" class="section">
-        <h2>Payment Method</h2>
-
-        <p>Please settle your payment via any of the following:</p>
-
-        <div class="payment-box">
-            <h3>GCash</h3>
-            <p>Number: <strong>09563013545</strong></p>
-        </div>
-
-        <div class="payment-box">
-            <h3>BDO Bank Transfer</h3>
-            <p>Account Number: <strong>000000</strong></p>
-        </div>
-
-        <h3>Send Proof of Payment</h3>
-        <p>Once payment is completed, send your proof of payment to:</p>
-
-        <ul class="proof-list">
-            <li>Viber: <strong>09563013545</strong></li>
-            <li>WhatsApp: <strong>09563013545</strong></li>
-        </ul>
-    </section>
-    <!-- END PAYMENT SECTION -->
-
-    <footer>
-        <p>© 2025 Fruit Cake Orders. All rights reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        <button type="submit" class="cta-btn">Submit Order</button>
+    </form>
+</section>
