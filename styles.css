@@ -1,1 +1,97 @@
 
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+}
+
+header {
+    background: #262626;
+    padding: 20px;
+    text-align: center;
+}
+
+header .tagline {
+    color: #ccc;
+}
+
+nav a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffcc66;
+}
+
+#hero {
+    background: url('images/fruitcake-bg.jpg') center/cover no-repeat;
+    padding: 120px 20px;
+    text-align: center;
+}
+
+#hero h2 {
+    font-size: 42px;
+}
+
+.cta-btn {
+    background: #ffcc66;
+    padding: 12px 25px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.section {
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.cake-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.cake-card {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.price {
+    display: inline-block;
+    margin-top: 10px;
+    background: #ffcc66;
+    padding: 6px 12px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select, textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+footer {
+    background: #000;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    color: #999;
+}
