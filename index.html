@@ -1,40 +1,166 @@
-<section id="order" class="section">
-    <h2>Order Form</h2>
-    <p>Submit your order and we will contact you for confirmation.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Cake Orders</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-    <form id="orderForm">
-        <label>Name:</label>
-        <input type="text" name="customer_name" required>
+<body>
+    <header>
+        <div class="logo-area">
+            <h1>Fruit Cake Orders</h1>
+            <p class="tagline">Freshly baked. Premium ingredients. Made to order.</p>
+        </div>
 
-        <label>Email:</label>
-        <input type="email" name="customer_email" required>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#menu">Cakes</a>
+            <a href="#order">Order</a>
+            <a href="#payment">Payment</a>
+        </nav>
+    </header>
 
-        <label>Contact Number:</label>
-        <input type="text" name="customer_contact" required>
+    <section id="hero">
+        <h2>Premium Homemade Fruit Cakes</h2>
+        <p>Perfect for holidays, celebrations, gifts, and everyday indulgence.</p>
+        <a href="#order" class="cta-btn">Place an Order</a>
+    </section>
 
-        <label>Select Cake:</label>
-        <select name="cake_type">
-            <option>Single Order - ₱550</option>
-            <option>Double Order - ₱450</option>
-            <option>5 Orders - ₱360</option>
-        </select>
+    <section id="about" class="section">
+        <h2>About Our Fruit Cakes</h2>
+        <p>
+            Our fruit cakes are handcrafted using high-quality ingredients: dried fruits, nuts,
+            spices, and premium rum or brandy (optional). Each loaf is baked fresh per order.
+        </p>
+    </section>
 
-        <label>Quantity:</label>
-        <input type="number" name="quantity" min="1" value="1" required>
+    <section id="menu" class="section">
+        <h2>Our Cakes</h2>
+        <div class="cake-grid">
+            <div class="cake-card">
+                <h3>Single Order</h3>
+                <span class="price">₱550 / loaf</span>
+            </div>
 
-        <label>Mode of Payment:</label>
-        <select name="payment_method" required>
-            <option value="GCash">GCash</option>
-            <option value="Maya">Maya</option>
-            <option value="BDO">BDO</option>
-        </select>
+            <div class="cake-card">
+                <h3>Double Your Order</h3>
+                <span class="price">₱450 / loaf</span>
+            </div>
 
-        <label>Notes (Optional):</label>
-        <textarea name="notes" placeholder="Pickup date, customization, etc."></textarea>
+            <div class="cake-card">
+                <h3>5 Orders</h3>
+                <span class="price">₱360 / loaf</span>
+            </div>
+        </div>
+    </section>
 
-        <!-- Hidden field for the tracking number -->
-        <input type="hidden" name="tracking_number" id="tracking_number">
+    <section id="order" class="section">
+        <h2>Order Form</h2>
+        <p>Submit your order. You will receive a confirmation email with your tracking number.</p>
 
-        <button type="submit" class="cta-btn">Submit Order</button>
-    </form>
-</section>
+        <form id="orderForm">
+            <label>Name:</label>
+            <input type="text" name="customer_name" required>
+
+            <label>Email:</label>
+            <input type="email" name="customer_email" required>
+
+            <label>Contact Number:</label>
+            <input type="text" name="customer_contact" required>
+
+            <label>Select Cake:</label>
+            <select name="cake_type">
+                <option>Single Order - ₱550</option>
+                <option>Double Order - ₱450</option>
+                <option>5 Orders - ₱360</option>
+            </select>
+
+            <label>Quantity:</label>
+            <input type="number" name="quantity" min="1" value="1" required>
+
+            <label>Mode of Payment:</label>
+            <select name="payment_method" required>
+                <option value="GCash">GCash</option>
+                <option value="Maya">Maya</option>
+                <option value="BDO">BDO</option>
+            </select>
+
+            <label>Notes (Optional):</label>
+            <textarea name="notes" placeholder="Pickup date, customization, etc."></textarea>
+
+            <!-- Tracking number hidden field -->
+            <input type="hidden" name="tracking_number" id="tracking_number">
+
+            <button type="submit" class="cta-btn">Submit Order</button>
+        </form>
+    </section>
+
+    <section id="payment" class="section">
+        <h2>Payment Method</h2>
+
+        <div class="payment-box">
+            <h3>GCash</h3>
+            <p>Number: <strong>09563013545</strong></p>
+        </div>
+
+        <div class="payment-box">
+            <h3>BDO Bank Transfer</h3>
+            <p>Account Number: <strong>000000</strong></p>
+        </div>
+
+        <h3>Send Proof of Payment</h3>
+        <p>After paying, send your proof of payment to:</p>
+        <ul class="proof-list">
+            <li>Viber: <strong>09563013545</strong></li>
+            <li>WhatsApp: <strong>09563013545</strong></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 Fruit Cake Orders. All rights reserved.</p>
+    </footer>
+
+    <!-- EmailJS + Script -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("YOUR_PUBLIC_KEY");   // Replace with your EmailJS Public Key
+
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Generate tracking number
+            const tracking = "FC-" + 
+                new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + 
+                Math.floor(10000 + Math.random() * 90000);
+
+            document.getElementById("tracking_number").value = tracking;
+
+            const formData = {
+                customer_name: this.customer_name.value,
+                customer_email: this.customer_email.value,
+                customer_contact: this.customer_contact.value,
+                cake_type: this.cake_type.value,
+                quantity: this.quantity.value,
+                payment_method: this.payment_method.value,
+                notes: this.notes.value,
+                tracking_number: tracking
+            };
+
+            // Send email via EmailJS
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData)
+                .then(function(response) {
+                    alert("Order submitted successfully! A confirmation email has been sent.\nTracking Number: " + tracking);
+                    document.getElementById("orderForm").reset();
+                }, function(error) {
+                    alert("Error sending email. Please try again later.");
+                    console.error(error);
+                });
+        });
+    </script>
+
+</body>
+</html>
