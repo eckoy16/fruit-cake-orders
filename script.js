@@ -1,16 +1,33 @@
+// =======================================
 // Initialize EmailJS
-emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+// Replace this with your EmailJS Public Key
+// =======================================
+emailjs.init("YOUR_PUBLIC_KEY"); 
+// Example: emailjs.init("H8sh77_xxxxx");
 
+
+// =======================================
+// Generate Tracking Number
+// Format: FC-YYYYMMDD-RANDOM5
+// =======================================
+function generateTrackingNumber() {
+    const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    const random = Math.floor(10000 + Math.random() * 90000);
+    return `FC-${date}-${random}`;
+}
+
+
+// =======================================
+// Order Form Submission Handler
+// =======================================
 document.getElementById("orderForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Generate Tracking Number Example: FC-20251202-48293
-    const tracking = "FC-" + 
-        new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + 
-        Math.floor(10000 + Math.random() * 90000);
+    // Generate tracking ID
+    const trackingNumber = generateTrackingNumber();
+    document.getElementById("tracking_number").value = trackingNumber;
 
-    document.getElementById("tracking_number").value = tracking;
-
+    // Collect form data
     const formData = {
         customer_name: this.customer_name.value,
         customer_email: this.customer_email.value,
@@ -19,16 +36,26 @@ document.getElementById("orderForm").addEventListener("submit", function(event) 
         quantity: this.quantity.value,
         payment_method: this.payment_method.value,
         notes: this.notes.value,
-        tracking_number: tracking
+        tracking_number: trackingNumber
     };
 
-    // EmailJS send
+    // =======================================
+    // Send Email using EmailJS
+    // Replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID
+    // =======================================
     emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData)
-        .then(function(response) {
-            alert("Order submitted! A confirmation email has been sent with your tracking number:\n" + tracking);
+        .then(response => {
+            alert(
+                "Order submitted successfully!\n\n" +
+                "A confirmation email has been sent to: " + formData.customer_email +
+                "\n\nYour Tracking Number:\n" + trackingNumber
+            );
+
+            // Reset form
             document.getElementById("orderForm").reset();
-        }, function(error) {
-            alert("Error sending email. Please try again.");
-            console.error(error);
+        })
+        .catch(error => {
+            alert("There was an issue sending your confirmation email. Please try again later.");
+            console.error("EmailJS Error:", error);
         });
 });
